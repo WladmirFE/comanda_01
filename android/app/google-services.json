@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "576560843684",
+    "project_id": "comanda-01-f2c43",
+    "storage_bucket": "comanda-01-f2c43.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576560843684:android:89caf5007bf25c8d6f4f31",
+        "android_client_info": {
+          "package_name": "com.example.comanda_01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRBckEfqm0ZHjLxdrvIO2-SI-NNni220I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
