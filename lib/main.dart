@@ -1,3 +1,6 @@
+import 'package:comanda_01/pages/dishesList.dart';
+import 'package:comanda_01/pages/homePage.dart';
+import 'package:comanda_01/pages/newDishe.dart';
 import 'package:comanda_01/pages/userPage.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +39,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
+        'homePage': (context) => const HomePage(),
         'newOrder': (context) => const NewOrder(),
+        'dishesList': (context) => const DishesList(),
+        'newDishe': (context) => const NewDishe(),
         'userPage': (context) => const UserPage(),
         '/loginRegisterPage': (context) => const LoginPage(),
       },

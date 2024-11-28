@@ -8,22 +8,21 @@ class MainActionsList extends StatelessWidget {
   Widget _actionBtn(BuildContext context, String route, String title,
       String subtitle, Color color, FaIcon mainIcon) {
     return ListTile(
-      dense: true, // Ajusta o tamanho geral do ListTile
-      contentPadding:
-          const EdgeInsets.symmetric(vertical: 16.0), // Ajuste a altura
+      dense: true,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
       leading: mainIcon,
       title: Text(
         title,
-        style: const TextStyle(fontSize: 24.0), // Aumenta o tamanho da fonte
+        style: const TextStyle(fontSize: 24.0),
       ),
       subtitle: Text(
         subtitle,
-        style: const TextStyle(fontSize: 18.0), // Aumenta o tamanho da fonte
+        style: const TextStyle(fontSize: 18.0),
       ),
       trailing: Icon(
         Icons.arrow_forward,
         color: color,
-        size: 30.0, // Aumenta o tamanho do ícone
+        size: 30.0,
       ),
       onTap: () {
         Navigator.pushNamed(context, route);
@@ -50,9 +49,9 @@ class MainActionsList extends StatelessWidget {
             )),
         _actionBtn(
             context,
-            'newOrder',
+            'dishesList',
             'Editar Pratos',
-            'Edite ou exclua dados do menu',
+            'Adicione, edite ou exclua dados do menu',
             mainColor,
             FaIcon(
               FontAwesomeIcons.clipboard,
@@ -61,7 +60,7 @@ class MainActionsList extends StatelessWidget {
             )),
         _actionBtn(
             context,
-            'newOrder',
+            'homePage',
             'Configurar Local',
             'Configure elementos do estabelecimento',
             mainColor,
@@ -72,7 +71,7 @@ class MainActionsList extends StatelessWidget {
             )),
         _actionBtn(
             context,
-            'newOrder',
+            'homePage',
             'Pedidos Arquivados',
             'Consulte pedidos arquivados',
             mainColor,

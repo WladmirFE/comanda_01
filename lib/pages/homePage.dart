@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Corpo da tela
           Container(
             height: double.infinity,
             width: double.infinity,
@@ -31,14 +30,11 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Adicionando um SizedBox para espaçar a lista do topo
-                SizedBox(height: 125), // Ajuste esse valor conforme necessário
+                SizedBox(height: 125),
                 MainActionsList(),
               ],
             ),
           ),
-
-          // Botão no canto esquerdo (sem círculo)
           Positioned(
             top: 40,
             left: 20,
@@ -47,14 +43,12 @@ class _HomePageState extends State<HomePage> {
                 FontAwesomeIcons.user,
                 size: 60.0,
                 color: mainColor,
-              ), // Aumentando o tamanho do ícone
+              ),
               onPressed: () {
                 Navigator.pushNamed(context, 'userPage');
               },
             ),
           ),
-
-          // Botão no canto direito (ícone de sino)
           Positioned(
             top: 40,
             right: 20,
@@ -63,11 +57,8 @@ class _HomePageState extends State<HomePage> {
                 FontAwesomeIcons.bell,
                 size: 60.0,
                 color: mainColor,
-              ), // Aumentando o tamanho do ícone
-              onPressed: () {
-                // Ação do botão direito
-                print('Botão direito (sino) pressionado');
-              },
+              ),
+              onPressed: () {},
             ),
           ),
         ],

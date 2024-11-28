@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:comanda_01/utils/colorPalette.dart';
 
-class ItensList extends StatelessWidget {
+class CrudList extends StatelessWidget {
   final ScrollController scrollController;
 
-  const ItensList({super.key, required this.scrollController});
+  const CrudList({super.key, required this.scrollController});
 
   Widget _actionBtn(
       BuildContext context, String title, String subtitle, Color color) {
@@ -28,26 +29,45 @@ class ItensList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
-              icon: Icon(Icons.remove, color: color),
+              icon: Icon(Icons.edit, color: color),
               onPressed: () {},
-            ),
-            Flexible(
-              child: Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  '0',
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                ),
-              ),
             ),
             IconButton(
-              icon: Icon(Icons.add, color: color),
-              onPressed: () {},
+              icon: Icon(Icons.delete, color: color),
+              onPressed: () {
+                _showDeleteConfirmationDialog(context);
+              },
             ),
           ],
         ),
       ),
       onTap: () {},
+    );
+  }
+
+  void _showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirmar Exclusão'),
+          content: const Text('Tem certeza de que deseja excluir este item?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Excluir'),
+            ),
+          ],
+        );
+      },
     );
   }
 

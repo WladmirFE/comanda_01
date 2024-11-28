@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:comanda_01/widgets/entryField.dart';
 import 'package:comanda_01/utils/colorPalette.dart';
 import 'package:comanda_01/widgets/itensList.dart';
+import 'package:comanda_01/widgets/newOrderList.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NewOrder extends StatefulWidget {
@@ -82,7 +83,7 @@ class _NewOrderState extends State<NewOrder> {
                       ),
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    height: screenHeight * 0.43,
+                    height: screenHeight * 0.5,
                     child: ItensList(
                       scrollController: _scrollController,
                     ),
@@ -92,48 +93,32 @@ class _NewOrderState extends State<NewOrder> {
             ),
           ),
           DraggableScrollableSheet(
-            initialChildSize: 0.3, // Tamanho inicial (15% da tela)
-            minChildSize: 0.3, // Tamanho mínimo (15% da tela)
-            maxChildSize: 0.7, // Tamanho máximo ajustado (70% da tela)
+            initialChildSize: 0.2,
+            minChildSize: 0.2,
+            maxChildSize: 0.7,
             builder: (BuildContext context, ScrollController scrollController) {
               return Container(
                 decoration: const BoxDecoration(
+                  //255, 218, 87, 0
                   color: Color.fromARGB(255, 218, 87, 0),
                   borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(16.0), // Bordas arredondadas no topo
+                    top: Radius.circular(16.0),
                   ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    // Indicador de "arrasto" no topo
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),
-                      child: Center(
-                        child: Container(
-                          width: 40,
-                          height: 4,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(2.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    // Lista de itens
                     Expanded(
                       child: Scrollbar(
                         controller: scrollController,
                         thumbVisibility: true,
-                        child: ItensList(scrollController: scrollController),
+                        child: NewOrderList(scrollController: scrollController),
                       ),
                     ),
-                    // Botão de confirmação
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Adicione a lógica do seu botão de confirmação aqui
                           print('Pedido confirmado!');
                         },
                         style: ElevatedButton.styleFrom(

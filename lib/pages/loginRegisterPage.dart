@@ -18,34 +18,55 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? errorMsg = '';
   bool isLogin = true;
+  bool isLoading = false;
 
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerName = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       await Auth().signInWithEmailAndPassword(
         password: _controllerPassword.text,
         email: _controllerEmail.text,
       );
+      setState(() {
+        errorMsg = '';
+      });
     } on FirebaseException catch (erro) {
       setState(() {
         errorMsg = erro.message;
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
   }
 
   Future<void> createUserWithEmailAndPassword() async {
+    setState(() {
+      isLoading = true;
+    });
     try {
       await Auth().createUserWithEmailAndPassword(
         password: _controllerPassword.text,
         email: _controllerEmail.text,
         name: _controllerName.text,
       );
+      setState(() {
+        errorMsg = '';
+      });
     } on FirebaseException catch (erro) {
       setState(() {
         errorMsg = erro.message;
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
       });
     }
   }
@@ -79,8 +100,11 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      onPressed:
-          isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
+      onPressed: isLoading
+          ? null
+          : (isLogin
+              ? signInWithEmailAndPassword
+              : createUserWithEmailAndPassword),
       child: Text(
         isLogin ? 'Login' : 'Registrar',
         style: const TextStyle(
@@ -93,11 +117,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginOrRegisterBtn(Color color) {
     return TextButton(
-      onPressed: () {
-        setState(() {
-          isLogin = !isLogin;
-        });
-      },
+      onPressed: isLoading
+          ? null
+          : () {
+              setState(() {
+                isLogin = !isLogin;
+                errorMsg = '';
+              });
+            },
       child: Text(
         isLogin
             ? 'Não tem conta? Registrar-se'
@@ -109,6 +136,12 @@ class _LoginPageState extends State<LoginPage> {
           decorationThickness: 2,
         ),
       ),
+    );
+  }
+
+  Widget _loadingIndicator(mainColor) {
+    return CircularProgressIndicator(
+      color: mainColor,
     );
   }
 
@@ -180,6 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _controllerPassword),
                 const SizedBox(height: 10),
                 _errorMsg(),
+                if (isLoading) _loadingIndicator(mainColor),
                 _loginOrRegisterBtn(mainColor),
                 _submitBtn(mainColor),
               ],
