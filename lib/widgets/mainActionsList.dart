@@ -71,7 +71,7 @@ class MainActionsList extends StatelessWidget {
             )),
         _actionBtn(
             context,
-            'homePage',
+            'ordersList',
             'Pedidos Arquivados',
             'Consulte pedidos arquivados',
             mainColor,

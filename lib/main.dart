@@ -1,11 +1,12 @@
 import 'package:comanda_01/pages/dishesList.dart';
 import 'package:comanda_01/pages/homePage.dart';
 import 'package:comanda_01/pages/newDishe.dart';
+import 'package:comanda_01/pages/ordersList.dart';
 import 'package:comanda_01/pages/userPage.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:provider/provider.dart';
 
 import 'package:comanda_01/navigation/widgetTree.dart';
 import 'package:comanda_01/pages/newOrder.dart';
@@ -29,7 +30,9 @@ Future<void> main() async {
     await Firebase.initializeApp();
   }
 
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,6 +44,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'homePage': (context) => const HomePage(),
         'newOrder': (context) => const NewOrder(),
+        'ordersList': (context) => const OrdersList(),
         'dishesList': (context) => const DishesList(),
         'newDishe': (context) => const NewDishe(),
         'userPage': (context) => const UserPage(),

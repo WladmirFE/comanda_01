@@ -14,6 +14,29 @@ class DishesList extends StatefulWidget {
 class _DishesListState extends State<DishesList> {
   final TextEditingController _controllerPesquisa = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  String _searchQuery =
+      ''; // Usando uma string para armazenar a consulta de pesquisa
+
+  @override
+  void initState() {
+    super.initState();
+    _controllerPesquisa.addListener(_performSearch);
+  }
+
+  @override
+  void dispose() {
+    _controllerPesquisa.removeListener(_performSearch); // Remover o listener
+    _controllerPesquisa.dispose();
+    super.dispose();
+  }
+
+  // Função para realizar a pesquisa
+  void _performSearch() {
+    setState(() {
+      _searchQuery =
+          _controllerPesquisa.text.trim(); // Atualiza a consulta de pesquisa
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +84,11 @@ class _DishesListState extends State<DishesList> {
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     height: screenHeight * 0.7,
-                    child: CrudList(scrollController: _scrollController),
+                    child: CrudList(
+                      scrollController: _scrollController,
+                      searchQuery:
+                          _searchQuery, // Passando a consulta de pesquisa para a CrudList
+                    ),
                   ),
                   const SizedBox(height: 15),
                   ElevatedButton(
